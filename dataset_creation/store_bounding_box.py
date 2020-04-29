@@ -252,7 +252,7 @@ def process(input_dir, size, left_corner, output_dir, debug=False):
                 card = cv2.cvtColor(card, cv2.COLOR_BGRA2RGBA)
 
                 # Save the image and corner contours in the dictionary object
-                cards_map[target_class].append((card, left_contour, right_contour))
+                cards_map[target_class].append((files[index], left_contour, right_contour))
             else:
                 # Increment the unused counter
                 not_used += 1
@@ -264,7 +264,7 @@ def process(input_dir, size, left_corner, output_dir, debug=False):
         report[target_class] = {'Images Processed': len(files) - not_used, 'Skipped': not_used}
 
     # Dump the dictionary object in a pickle file
-    pickle.dump(cards_map, open(output_dir + "cards.pck", 'wb'))
+    pickle.dump(cards_map, open(output_dir + "cards_ref.pck", 'wb'))
 
     # Close if any opencv windows are opened
     cv2.destroyAllWindows()

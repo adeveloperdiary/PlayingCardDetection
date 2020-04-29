@@ -119,6 +119,7 @@ def capture_images_from_video(video_dir, output_dir, processed_dir, capture_in_e
 
                     # If Card is detected then
                     if card is not None:
+
                         # Clean the mask using the rounder corner alpha mask
                         card[:, :, 3] = cv2.bitwise_and(card[:, :, 3], get_alpha_mask(card_height, card_width))
 
@@ -199,7 +200,7 @@ def display_image(output_dir, rect):
             break
 
 
-def execute(test, video_dir, output_dir, processed_dir):
+def execute(test, video_dir=None, output_dir=None, processed_dir=None):
     """
         Execute the process of extraction
 
@@ -218,7 +219,7 @@ def execute(test, video_dir, output_dir, processed_dir):
 
     # Location of the extracted images of cards
     if output_dir is None:
-        output_dir = "/Volumes/Samsung_T5/datasets/cards"
+        output_dir = "/Volumes/Samsung_T5/datasets/test"
 
     # Backup folder for the videos
     if processed_dir is None:
