@@ -77,8 +77,9 @@ def get_contour(card, corner, card_number, debug):
     # Preprocess corner image
     processed_corner_img = pre_process(corner_img, debug)
 
-    # Find the contours
-    _, contours, _ = cv2.findContours(processed_corner_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    # Find the contours ( change the line, based on open cv version )
+    # _, contours, _ = cv2.findContours(processed_corner_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(processed_corner_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     # Sort the contours
     contours = sorted(contours, key=cv2.contourArea, reverse=True)
@@ -293,7 +294,7 @@ def execute(debug):
     # Invoke the process function
     process(
         # Location of the datasets
-        input_dir="/Volumes/Samsung_T5/datasets/cards/",
+        input_dir="/media/4TB/datasets/playing_cards/cards",
 
         # Size of the cards
         size=(280, 400),
@@ -302,7 +303,7 @@ def execute(debug):
         left_corner=[(5, 10), (50, 110)],
 
         # Output dir
-        output_dir="/Volumes/Samsung_T5/datasets/",
+        output_dir="/media/4TB/datasets/playing_cards/",
 
         # debug flag
         debug=debug)

@@ -436,7 +436,7 @@ class Scene:
         bname = "%09d" % random.randint(0, 999999999)
 
         r = md5(str(localtime()).encode('utf-8')).hexdigest() + bname
-        return os.path.join(save_dir, "%s_%s" % (r, 'image.jpg')), os.path.join(save_dir, "%s_%s" % (r, 'objects.xml'))
+        return os.path.join(save_dir, "%s_%s" % (r, 'objects.jpg')), os.path.join(save_dir, "%s_%s" % (r, 'objects.xml'))
 
     def write_files(self, save_dir, add_bb=False):
         """
@@ -475,11 +475,11 @@ if __name__ == '__main__':
         This is used to generate the scene using the the cards and the background image.
     """
 
-    cards = Cards(path="/Volumes/Samsung_T5/datasets/cards_ref.pck")
-    bg = Backgrounds(path="/Volumes/Samsung_T5/datasets/dtd/images/*/*.jpg")
+    cards = Cards(path="/media/4TB/datasets/playing_cards/cards_ref.pck")
+    bg = Backgrounds(path="/media/4TB/datasets/backgrounds/images/*/*.jpg")
     scene = Scene(cards, bg, scene_dim={'width': 720, 'height': 720}, object_dim={'width': 280, 'height': 400}, overlap_ratio=400)
 
-    for count in tqdm(range(50)):
+    for count in tqdm(range(10000)):
         scene.create_default_scene(num_obj=count % 4 + 1)
         # scene.display()
-        scene.write_files(save_dir="/Volumes/Samsung_T5/datasets/final", add_bb=True)
+        scene.write_files(save_dir="/media/4TB/datasets/playing_cards/scenes/test", add_bb=False)
